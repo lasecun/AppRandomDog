@@ -1,4 +1,4 @@
-package com.itram.randomdogs.model
+package com.itram.randomdogs.data.model
 
 import com.google.gson.annotations.SerializedName
 

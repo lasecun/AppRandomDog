@@ -13,7 +13,7 @@
         android:theme="@style/Theme.RandomDogs"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".MainActivity"
+            android:name="com.itram.randomdogs.ui.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

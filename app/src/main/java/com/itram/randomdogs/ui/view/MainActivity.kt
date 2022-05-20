@@ -1,4 +1,4 @@
-package com.itram.randomdogs
+package com.itram.randomdogs.ui.view
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.itram.randomdogs.databinding.ActivityMainBinding
-import com.itram.randomdogs.viewmodel.DogViewModel
+import com.itram.randomdogs.ui.viewmodel.DogViewModel
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        dogViewModel.onCreate()
 
         binding.btnNewDog.setOnClickListener(showNewDog)
 
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val showNewDog = View.OnClickListener {
-        dogViewModel.getRandomDog()
+        dogViewModel.onCreate()
     }
 
 
