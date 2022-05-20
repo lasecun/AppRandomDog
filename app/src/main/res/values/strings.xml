@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RandomDogs</string>
+    <string name="nuevo_perro">Nuevo Perro</string>
+    <string name="image_to_store_the_dogs">Image to store the dogs</string>
+</resources>
