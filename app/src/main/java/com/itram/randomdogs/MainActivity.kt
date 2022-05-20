@@ -1,54 +1,41 @@
 package com.itram.randomdogs
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.itram.randomdogs.databinding.ActivityMainBinding
-import com.itram.randomdogs.model.APIService
+import com.itram.randomdogs.viewmodel.DogViewModel
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val dogViewModel: DogViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnNewDog.setOnClickListener { getRandomDog() }
+        binding.btnNewDog.setOnClickListener(showNewDog)
 
+
+        dogViewModel.randomImage.observe(this, Observer {
+            Picasso
+                .get()
+                .load(it)
+                .fit()
+                .centerCrop()
+                .noFade()
+                .into(binding.imgDog)
+        })
     }
 
-    private fun getRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://dog.ceo/api/breeds/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+    private val showNewDog = View.OnClickListener {
+        dogViewModel.getRandomDog()
     }
 
-    private fun getRandomDog() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = getRetrofit().create(APIService::class.java).getRandomDog("image/random/")
-            val dog = call.body()
-            runOnUiThread {
-                if (call.isSuccessful) {
-                    val images = dog?.image ?: ""
-                    // show image
-                    Picasso.get().load(images).into(binding.imgDog)
-                } else {
-                    showError()
-                }
-            }
-        }
-    }
 
-    private fun showError() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-    }
 }
