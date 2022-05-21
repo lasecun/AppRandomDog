@@ -5,17 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.itram.randomdogs.domain.GetRandomDogUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DogViewModel : ViewModel() {
+@HiltViewModel
+class DogViewModel @Inject constructor(
+    private val getRandomDogUseCase: GetRandomDogUseCase,
+) : ViewModel() {
 
     private val _randomImage = MutableLiveData<String>()
     var randomImage: LiveData<String> = _randomImage
 
     private val _isLoading = MutableLiveData<Boolean>()
     var isLoading: LiveData<Boolean> = _isLoading
-
-    var getRandomDogUseCase = GetRandomDogUseCase()
 
     fun onCreate() {
         randomDog()

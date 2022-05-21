@@ -1,17 +1,16 @@
 package com.itram.randomdogs.data.network
 
-import com.itram.randomdogs.core.RetrofitHelper
-import com.itram.randomdogs.data.model.DogResponse
+import com.itram.randomdogs.data.model.DogModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DogService {
-    private val retrofit = RetrofitHelper.getRetrofit()
+class DogService @Inject constructor(private val api: DogApiClient) {
 
-    suspend fun getRandomDog(): DogResponse {
+    suspend fun getRandomDog(): DogModel {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(ApiClient::class.java).getRandomDog()
-            response.body() ?: DogResponse("", "")
+            val response = api.getRandomDog()
+            response.body() ?: DogModel("", "")
         }
     }
 }

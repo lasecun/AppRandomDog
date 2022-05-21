@@ -9,7 +9,9 @@ import androidx.lifecycle.Observer
 import com.itram.randomdogs.databinding.ActivityMainBinding
 import com.itram.randomdogs.ui.viewmodel.DogViewModel
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
