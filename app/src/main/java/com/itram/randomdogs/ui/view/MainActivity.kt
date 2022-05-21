@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.itram.randomdogs.databinding.ActivityMainBinding
 import com.itram.randomdogs.ui.viewmodel.DogViewModel
@@ -33,10 +34,14 @@ class MainActivity : AppCompatActivity() {
                 .noFade()
                 .into(binding.imgDog)
         })
+
+        dogViewModel.isLoading.observe(this, Observer {
+            binding.progress.isVisible = it
+        })
     }
 
     private val showNewDog = View.OnClickListener {
-        dogViewModel.onCreate()
+        dogViewModel.randomDog()
     }
 
 
