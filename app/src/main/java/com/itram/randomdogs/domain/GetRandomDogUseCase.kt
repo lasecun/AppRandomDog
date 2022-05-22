@@ -10,7 +10,11 @@ class GetRandomDogUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(): Dog {
         val dog = repository.getRandomDogFromApi()
-        repository.insertDogs(dog.toDatabase())
-        return dog
+        return if (dog.image == "") {
+            Dog("default")
+        } else {
+            repository.insertDogs(dog.toDatabase())
+            dog
+        }
     }
 }
