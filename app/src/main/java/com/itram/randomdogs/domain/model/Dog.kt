@@ -7,6 +7,6 @@ data class Dog(
     val image: String,
 )
 
-fun DogModel.toDomain() = Dog(image)
+fun DogModel.toDomain() = Dog(message)
 fun DogEntity.toDomain() = Dog(image)
 

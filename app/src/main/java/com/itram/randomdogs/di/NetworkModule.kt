@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 ///////////////////////////////////////////////////////////////////////////
-// Provdes libreries dependencias or clases with interfaces
+// Provides libraries dependencies or classes with interfaces
 ///////////////////////////////////////////////////////////////////////////
 
 @Module

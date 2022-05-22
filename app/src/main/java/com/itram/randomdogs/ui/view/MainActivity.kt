@@ -45,6 +45,4 @@ class MainActivity : AppCompatActivity() {
     private val showNewDog = View.OnClickListener {
         dogViewModel.randomDog()
     }
-
-
 }
