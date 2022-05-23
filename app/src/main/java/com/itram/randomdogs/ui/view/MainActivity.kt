@@ -1,48 +1,29 @@
 package com.itram.randomdogs.ui.view
 
 import android.os.Bundle
-import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.itram.randomdogs.R
 import com.itram.randomdogs.databinding.ActivityMainBinding
-import com.itram.randomdogs.ui.viewmodel.DogViewModel
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-    private val dogViewModel: DogViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dogViewModel.onCreate()
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.mainContainer) as NavHostFragment
+        navController = navHostFragment.navController
 
-        binding.btnNewDog.setOnClickListener(showNewDog)
-
-
-        dogViewModel.randomImage.observe(this, Observer {
-            Picasso
-                .get()
-                .load(it)
-                .fit()
-                .centerCrop()
-                .noFade()
-                .into(binding.imgDog)
-        })
-
-        dogViewModel.isLoading.observe(this, Observer {
-            binding.progress.isVisible = it
-        })
-    }
-
-    private val showNewDog = View.OnClickListener {
-        dogViewModel.randomDog()
+        setupWithNavController(binding.bottomNavigationView, navController)
     }
 }
