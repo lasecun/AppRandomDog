@@ -30,4 +30,8 @@ class DogRepository @Inject constructor(
     suspend fun isDogSaved(key: String): Boolean {
         return dogDao.isDogSaved(key)
     }
+
+    suspend fun totalFavDogs(): Int {
+        return dogDao.totalFavorites()
+    }
 }

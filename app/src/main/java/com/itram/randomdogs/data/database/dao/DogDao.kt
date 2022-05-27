@@ -16,4 +16,7 @@ interface DogDao {
 
     @Query("SELECT EXISTS(SELECT * FROM dog_table WHERE id = :key)")
     suspend fun isDogSaved(key: String): Boolean
+
+    @Query("SELECT COUNT(id) FROM dog_table")
+    suspend fun totalFavorites(): Int
 }

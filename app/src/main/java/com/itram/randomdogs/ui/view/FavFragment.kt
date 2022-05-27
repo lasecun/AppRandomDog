@@ -16,23 +16,23 @@ class FavFragment : Fragment() {
     private lateinit var binding: FragmentFavBinding
     private val dogViewModel: DogViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentFavBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = dogViewModel
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        dogViewModel.onCreate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dogViewModel.onCreate()
-
-        binding.btnNewDog.setOnClickListener(showNewDog)
 
         dogViewModel.randomImage.observe(viewLifecycleOwner) {
             Glide
@@ -45,9 +45,9 @@ class FavFragment : Fragment() {
         dogViewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progress.isVisible = it
         }
-    }
 
-    private val showNewDog = View.OnClickListener {
-        dogViewModel.randomDog()
+        binding.btnAddToFavorites.setOnClickListener {
+            dogViewModel.addToFavorites()
+        }
     }
 }
