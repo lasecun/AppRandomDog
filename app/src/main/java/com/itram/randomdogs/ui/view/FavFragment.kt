@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.itram.randomdogs.databinding.FragmentFavBinding
 import com.itram.randomdogs.ui.viewmodel.DogViewModel
-import com.squareup.picasso.Picasso
 
 class FavFragment : Fragment() {
 
@@ -35,13 +35,11 @@ class FavFragment : Fragment() {
         binding.btnNewDog.setOnClickListener(showNewDog)
 
         dogViewModel.randomImage.observe(viewLifecycleOwner) {
-            Picasso
-                .get()
+            Glide
+                .with(this)
                 .load(it)
-                .fit()
                 .centerCrop()
-                .noFade()
-                .into(binding.imgDog)
+                .into(binding.imgDog);
         }
 
         dogViewModel.isLoading.observe(viewLifecycleOwner) {
