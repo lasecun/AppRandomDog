@@ -26,4 +26,8 @@ class DogRepository @Inject constructor(
     suspend fun insertDogs(dog: DogEntity) {
         dogDao.insertNewDog(dog)
     }
+
+    suspend fun isDogSaved(key: String): Boolean {
+        return dogDao.isDogSaved(key)
+    }
 }

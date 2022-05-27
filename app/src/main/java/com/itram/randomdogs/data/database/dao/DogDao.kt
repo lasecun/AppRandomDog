@@ -13,4 +13,7 @@ interface DogDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNewDog(dog: DogEntity)
+
+    @Query("SELECT EXISTS(SELECT * FROM dog_table WHERE id = :key)")
+    suspend fun isDogSaved(key: String): Boolean
 }
