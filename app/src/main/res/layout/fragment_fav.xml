@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.itram.randomdogs.ui.viewmodel.DogViewModel" />
@@ -47,6 +47,7 @@
             android:layout_marginTop="16dp"
             android:background="@android:color/darker_gray"
             android:text="@string/add_to_favorites"
+            android:onClick="@{() -> viewModel.addToFavorites()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnNewDog" />
@@ -65,9 +66,11 @@
             android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/imgDog"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

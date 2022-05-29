@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
@@ -33,21 +32,12 @@ class FavFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         dogViewModel.randomImage.observe(viewLifecycleOwner) {
             Glide
                 .with(this)
                 .load(it)
                 .centerCrop()
                 .into(binding.imgDog);
-        }
-
-        dogViewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progress.isVisible = it
-        }
-
-        binding.btnAddToFavorites.setOnClickListener {
-            dogViewModel.addToFavorites()
         }
     }
 }
