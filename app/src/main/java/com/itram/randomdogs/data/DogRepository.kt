@@ -34,4 +34,8 @@ class DogRepository @Inject constructor(
     suspend fun totalFavDogs(): Int {
         return dogDao.totalFavorites()
     }
+
+    suspend fun getFavDogsList(): List<DogEntity> {
+        return dogDao.getAllDogs()
+    }
 }

@@ -1,76 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View" />
-        <variable
-            name="viewModel"
-            type="com.itram.randomdogs.ui.viewmodel.DogViewModel" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.view.FavFragment">
 
-        <ImageView
-            android:id="@+id/imgDog"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/cardview_dark_background"
-            android:contentDescription="@string/image_to_store_the_dogs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnNewDog"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
-            android:text="@string/nuevo_perro"
-            android:onClick="@{() -> viewModel.randomDog()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imgDog" />
-
-        <Button
-            android:id="@+id/btnAddToFavorites"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/darker_gray"
-            android:text="@string/add_to_favorites"
-            android:onClick="@{() -> viewModel.addToFavorites()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnNewDog" />
-
-        <TextView
-            android:id="@+id/tv_total_favorites"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pets"
             android:gravity="center"
-            android:text="@{viewModel.totalFavorites}"
-            android:textSize="50sp"
-            app:layout_constraintTop_toBottomOf="@id/btnAddToFavorites" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:visibility="@{viewModel.isLoading() ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@+id/imgDog"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 </layout>

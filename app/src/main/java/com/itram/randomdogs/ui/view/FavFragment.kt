@@ -6,14 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import com.itram.randomdogs.databinding.FragmentFavBinding
-import com.itram.randomdogs.ui.viewmodel.DogViewModel
+import com.itram.randomdogs.ui.adapter.PetAdapter
+import com.itram.randomdogs.ui.viewmodel.FavViewModel
 
 class FavFragment : Fragment() {
 
     private lateinit var binding: FragmentFavBinding
-    private val dogViewModel: DogViewModel by activityViewModels()
+    private val musicViewModel: FavViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,23 +23,23 @@ class FavFragment : Fragment() {
     ): View {
         binding = FragmentFavBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = dogViewModel
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        dogViewModel.onCreate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dogViewModel.randomImage.observe(viewLifecycleOwner) {
-            Glide
-                .with(this)
-                .load(it)
-                .centerCrop()
-                .into(binding.imgDog);
+        musicViewModel.onCreate()
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        val manager = GridLayoutManager(context, 3)
+        val decoration = DividerItemDecoration(context, manager.orientation)
+        binding.rvPets.layoutManager = manager
+        musicViewModel.totalFavDogs.observe(viewLifecycleOwner) {
+            binding.rvPets.adapter = PetAdapter(it)
         }
+
+        binding.rvPets.addItemDecoration(decoration)
     }
 }

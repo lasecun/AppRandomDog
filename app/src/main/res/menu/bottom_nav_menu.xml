@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/dogFragment"
+        android:icon="@drawable/ic_baseline_pets_24"
+        android:title="@string/dog" />
+    <item
         android:id="@+id/favFragment"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="Fav" />
-    <item
-        android:id="@+id/musicFragment"
-        android:icon="@drawable/ic_baseline_music_note_24"
-        android:title="Music" />
+        android:title="@string/fav" />
     <item
         android:id="@+id/placesFragment"
         android:icon="@drawable/ic_baseline_location_on_24"
-        android:title="Places" />
+        android:title="@string/places" />
     <item
         android:id="@+id/newsFragment"
         android:icon="@drawable/ic_baseline_article_24"
-        android:title="News" />
+        android:title="@string/news" />
 </menu>
