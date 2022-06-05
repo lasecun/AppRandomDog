@@ -9,9 +9,9 @@ import com.itram.randomdogs.domain.model.Dog
 data class DogEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "breed") val breed: String,
     @ColumnInfo(name = "image") val image: String,
 ) {
 }
 
-fun Dog.toDatabase() = DogEntity(image = image, name = "")
+fun Dog.toDatabase() = DogEntity(image = image, breed = breed)

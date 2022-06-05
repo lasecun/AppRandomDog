@@ -10,6 +10,7 @@ import com.itram.randomdogs.domain.GetTotalNumberOfFavoritesUseCase
 import com.itram.randomdogs.domain.model.Dog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.net.URL
 import javax.inject.Inject
 
 @HiltViewModel
@@ -50,9 +51,14 @@ class DogViewModel @Inject constructor(
     }
 
     fun addToFavorites() {
+        val breed = getBreedFromUrl(randomImage.value.toString())
         viewModelScope.launch {
-            addDogToFavorites.invoke(Dog(randomImage.value.toString()))
+            addDogToFavorites.invoke(Dog(randomImage.value.toString(), breed))
             updateFavoritesNumber()
         }
+    }
+
+    private fun getBreedFromUrl(url: String): String {
+        return URL(url).path.split("/")[2]
     }
 }

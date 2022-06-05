@@ -1,7 +1,9 @@
 package com.itram.randomdogs.ui.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.itram.randomdogs.domain.AddDogToFavorites
 import com.itram.randomdogs.domain.GetRandomDogUseCase
+import com.itram.randomdogs.domain.GetTotalNumberOfFavoritesUseCase
 import com.itram.randomdogs.domain.model.Dog
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -20,6 +22,12 @@ class DogViewModelTest {
     @RelaxedMockK
     private lateinit var getRandomDogUseCase: GetRandomDogUseCase
 
+    @RelaxedMockK
+    private lateinit var getTotalNumberOfFavoritesUseCase: GetTotalNumberOfFavoritesUseCase
+
+    @RelaxedMockK
+    private lateinit var addDogToFavorites: AddDogToFavorites
+
     private lateinit var dogViewModel: DogViewModel
 
     @get:Rule
@@ -28,7 +36,8 @@ class DogViewModelTest {
     @Before
     fun onBefore() {
         MockKAnnotations.init(this)
-        dogViewModel = DogViewModel(getRandomDogUseCase)
+        dogViewModel =
+            DogViewModel(getRandomDogUseCase, getTotalNumberOfFavoritesUseCase, addDogToFavorites)
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
@@ -40,7 +49,7 @@ class DogViewModelTest {
     @Test
     fun `onCreate return a random dog`() = runTest {
         //Given
-        val dog = Dog("www.google.es")
+        val dog = Dog("www.google.es", "")
         coEvery { getRandomDogUseCase() } returns dog
         //When
         dogViewModel.onCreate()

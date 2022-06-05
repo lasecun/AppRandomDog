@@ -26,7 +26,7 @@ class GetRandomDogUseCaseTest {
     @Test
     fun `check if the API it's call at least one time`() = runBlocking {
         //Given
-        coEvery { repository.getRandomDogFromApi() } returns Dog("")
+        coEvery { repository.getRandomDogFromApi() } returns Dog("", "")
         //When
         getRandomDogUseCase()
         //Then
@@ -36,7 +36,7 @@ class GetRandomDogUseCaseTest {
     @Test
     fun `return default image if the image returned is empty string`() = runBlocking {
         //Given
-        val dog = Dog("")
+        val dog = Dog("", "")
         coEvery { repository.getRandomDogFromApi() } returns dog
         //When
         val response = getRandomDogUseCase()
