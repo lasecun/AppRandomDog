@@ -41,5 +41,8 @@ class FavFragment : Fragment() {
         }
 
         binding.rvPets.addItemDecoration(decoration)
+
+        val parent = activity as MainActivity
+        parent.bind.myToolbar.title = "Your Favourites Pets"
     }
 }

@@ -7,4 +7,11 @@
     <string name="fav">Fav</string>
     <string name="places">Places</string>
     <string name="news">News</string>
+    <string name="go_to_tutorial">Go To Tutorial</string>
+    <string name="welcome_to_step_1">Welcome to Step 1</string>
+    <string name="go_to_step_2">Go to STEP 2</string>
+    <string name="welcome_to_step_2">Welcome to Step 2</string>
+    <string name="go_to_step_3">Go to STEP 3</string>
+    <string name="welcome_to_step_3">Welcome to Step 3</string>
+    <string name="finish">Finish</string>
 </resources>

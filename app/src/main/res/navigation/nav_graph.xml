@@ -24,5 +24,39 @@
         android:id="@+id/newsFragment"
         android:name="com.itram.randomdogs.ui.view.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_newsFragment_to_tutorialStep1"
+            app:destination="@id/tutorialStep1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tutorialStep1"
+        android:name="com.itram.randomdogs.ui.view.TutorialStep1Fragment"
+        android:label="fragment_news"
+        tools:layout="@layout/tutorial_step1">
+        <action
+            android:id="@+id/action_tutorialStep1_to_tutorialStep2"
+            app:destination="@id/tutorialStep2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tutorialStep2"
+        android:name="com.itram.randomdogs.ui.view.TutorialStep2Fragment"
+        android:label="fragment_news"
+        tools:layout="@layout/tutorial_step2">
+        <action
+            android:id="@+id/action_tutorialStep2_to_tutorialStep3"
+            app:destination="@id/tutorialStep3" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tutorialStep3"
+        android:name="com.itram.randomdogs.ui.view.TutorialStep3Fragment"
+        android:label="fragment_news"
+        tools:layout="@layout/tutorial_step3">
+        <action
+            android:id="@+id/action_tutorialStep3_to_newsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
 </navigation>

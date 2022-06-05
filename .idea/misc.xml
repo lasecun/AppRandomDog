@@ -5,11 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable/bottom_nav_colors.xml" value="0.1615" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2740628166160081" />
+        <entry key="app/src/main/res/layout/fragment_dog.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_fav.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.1947463768115942" />
-        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_places.xml" value="0.1947463768115942" />
         <entry key="app/src/main/res/layout/item_pet.xml" value="0.5625" />
+        <entry key="app/src/main/res/layout/tutorial_step1.xml" value="0.28125" />
+        <entry key="app/src/main/res/layout/tutorial_step2.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/tutorial_step3.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.32083333333333336" />
       </map>
     </option>
